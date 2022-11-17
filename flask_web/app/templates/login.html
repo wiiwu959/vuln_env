@@ -1,48 +1,48 @@
-
-
-
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - youtube.com/codingnepal -->
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Animated Login Form | CodingNepal</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-          crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="center">
-      <h1>Login</h1>
-      {% with errors = get_flashed_messages(category_filter=["error"]) %}
-      {% if errors %}
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <ul>
-            {%- for msg in errors %}
-            <li>{{ msg }}</li>
-            {% endfor -%}
-        </ul>
+<html lang="en">
 
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      {% endif %}
-      {% endwith %}
-      <form method="POST" action="/login">
-        <div class="txt_field">
-          <input type="text"  name="username" placeholder="Username" required>
-          <span></span>
-          <label>Username</label>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP TOP 10 DEMO SITE</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+        <div class="column is-6 is-offset-3 has-text-centered">
+            <div class="box">
+                <h1 class="title">Login</h1>
+                {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                {% if errors %}
+                {%- for msg in errors %}
+                <div class="notification">
+                    {{msg}}
+                </div>
+                {% endfor -%}
+                {% endif %}
+                {% endwith %}
+                <form method="POST" action="/login" id="form">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="text" name="username" placeholder="username">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="password" name="password" placeholder="password">
+                        </div>
+                    </div>
+                    <button class="button is-block is-info is-fullwidth">
+                        Login
+                    </button>
+                </form>
+            </div>
         </div>
-        <div class="txt_field">
-          <input type="password" name="password" placeholder="Password" required>
-          <span></span>
-          <label>Password</label>
-        </div>
-        <input type="submit" value="Login">
-      </form>
     </div>
+  </section>
+</body>
 
-  </body>
 </html>

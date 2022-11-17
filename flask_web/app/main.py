@@ -61,7 +61,8 @@ def login():
     password = request.form.get('password')
     
     if not username or not password:
-        return "Not Login"
+        flash('You were failed logged in', 'error')
+        return redirect(url_for("index"))
 
     # TODO 可以拿出來改
     # admin') OR 1=1--
@@ -133,12 +134,16 @@ def bake():
 # ======= SSRF =======
 # TODO: make this ssrf more reasonable
 # http://127.0.0.1:8001/ssrf?url=http://127.0.0.1:6379?%0d%0aSET%20B%20bbb%0d%0apadding
-@app.route("/ssrf")
+@app.route("/lookup")
 def url_lookup():
     url = request.args.get('url')
     if not url:
         return render_template("url_check.html", info="Enter url and fetch source")
-    info = urllib.request.urlopen(url)
+    
+    try:
+        info = urllib.request.urlopen(url)
+    except:
+        return render_template("wrong.html")
     return render_template("url_check.html", info=info.read().decode())
 
 @app.route("/")
