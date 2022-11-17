@@ -1,0 +1,48 @@
+
+
+
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Animated Login Form | CodingNepal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="center">
+      <h1>Login</h1>
+      {% with errors = get_flashed_messages(category_filter=["error"]) %}
+      {% if errors %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <ul>
+            {%- for msg in errors %}
+            <li>{{ msg }}</li>
+            {% endfor -%}
+        </ul>
+
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endif %}
+      {% endwith %}
+      <form method="POST" action="/login">
+        <div class="txt_field">
+          <input type="text"  name="username" placeholder="Username" required>
+          <span></span>
+          <label>Username</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" name="password" placeholder="Password" required>
+          <span></span>
+          <label>Password</label>
+        </div>
+        <input type="submit" value="Login">
+      </form>
+    </div>
+
+  </body>
+</html>

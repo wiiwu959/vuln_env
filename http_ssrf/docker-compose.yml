@@ -1,0 +1,15 @@
+
+
+version: '2'
+services:
+  apache:
+    build: .
+    ports:
+      - "9999:80"
+#  tomcat:
+#    image: tomcat:8.5.19
+  php:
+    build: php
+    volumes:
+      - ./php/index.php:/var/www/html/index.php:ro
+      - ./flag.php:/flag:ro

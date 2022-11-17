@@ -1,0 +1,11 @@
+version: "1"
+
+services:
+    php:
+        image: php:7.4-apache
+        volumes:
+            - ./html:/var/www/html
+        ports:
+            - 80:80/tcp
+        environment:
+            - FLAG=FLAG{SSRF_here_is_it}
